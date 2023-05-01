@@ -1,8 +1,9 @@
 import { Chip } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Like({ likes }) {
+export default function Like({ likes, onLike }) {
   const [alreadyLiked, setAlreadyLiked] = useState(false)
+  const [label, setLabel] = useState(likes + " likes")
 
   function increaseLikes() {
     if (alreadyLiked) {
@@ -10,11 +11,18 @@ export default function Like({ likes }) {
       return
     }
 
+    onLike()
+
     setAlreadyLiked(true)
   }
 
+  useEffect(() => {
+    if (alreadyLiked) setLabel("liked")
+    else setLabel(likes + " likes")
+  }, [alreadyLiked, likes])
+
   return <Chip
-    label={likes + " likes"}
+    label={label}
     variant="outlined"
     onClick={increaseLikes}
   />
