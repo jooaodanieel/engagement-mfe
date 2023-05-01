@@ -1,8 +1,7 @@
 import { Chip } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function Like({  }) {
-  const [nLikes, setNLikes] = useState(0)
+export default function Like({ likes }) {
   const [alreadyLiked, setAlreadyLiked] = useState(false)
 
   function increaseLikes() {
@@ -12,16 +11,10 @@ export default function Like({  }) {
     }
 
     setAlreadyLiked(true)
-    setTimeout(() => setNLikes(nLikes + 1), 137)
   }
 
-  useEffect(() => {
-    const maybeId = window.location.pathname.split("/")[2]
-    console.log(maybeId)
-  }, [])
-
   return <Chip
-    label={nLikes + " likes"}
+    label={likes + " likes"}
     variant="outlined"
     onClick={increaseLikes}
   />
