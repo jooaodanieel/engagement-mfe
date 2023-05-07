@@ -1,5 +1,6 @@
-import { Box, Stack } from "@mui/material"
 import { useEffect, useState } from "react"
+
+import { CardContainer } from "@digidojo-blog/design-system"
 
 import Like from "./components/Like"
 import Share from "./components/Share"
@@ -24,19 +25,9 @@ export default function Root(props) {
     setUuid(id)
   }, [uuid])
 
-  const boxStyle = {
-    backgroundColor: "#f9f9f9",
-    borderRadius: "10px",
-    border: "1px solid #c4c4c4",
-    padding: "1rem",
-    width: "fit-content"
-  }
+  return <CardContainer>
+    <Like likes={likes} onLike={like} />
 
-  return <Box sx={ boxStyle }>
-    <Stack spacing={1}>
-      <Like likes={likes} onLike={like} />
-
-      <Share shares={shares} onShare={copyURL} />
-    </Stack>
-  </Box>
+    <Share shares={shares} onShare={copyURL} />
+  </CardContainer>
 }
